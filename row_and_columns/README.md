@@ -4,7 +4,7 @@ A Flutter application that display how the Row and the Column Widget works. (how
 
 <!--- ![Row and Column](rows-and-columns.png =250x) -->
 
-<img src="rows-and-columns.png" width="200">
+<img src="rows-and-columns.png" width="400">
 
 This Application basically visualizes **Rows** and **Columns**
 
