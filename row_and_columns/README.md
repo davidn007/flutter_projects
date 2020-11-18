@@ -2,7 +2,9 @@
 
 A Flutter application that display how the Row and the Column Widget works. (how they are laid out)
 
-![Row and Column](rows-and-columns.png =250x)
+<!--- ![Row and Column](rows-and-columns.png =250x) -->
+
+<img src="rows-and-columns.png" width="200">
 
 This Application basically visualizes **Rows** and **Columns**
 
