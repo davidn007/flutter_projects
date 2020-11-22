@@ -10,4 +10,6 @@ Various Project include:
 
 [Micard](micard/ "micard")
 
-[Xylophone](xylophone/ "xylophone")
+[Xylophone](xylophone/ "play musical sounds")
+
+[Startup Name Generator](startup_maker/ "find that startup name")
