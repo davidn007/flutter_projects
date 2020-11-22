@@ -12,4 +12,4 @@ Various Project include:
 
 [Xylophone](xylophone/ "play musical sounds")
 
-[Startup Name Generator](startup_maker/ "find that startup name")
+[Startup Name Generator (Startup maker)](startup_maker/ "find that startup name")
