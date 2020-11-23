@@ -22,15 +22,25 @@ class _RandomWordsState extends State<RandomWords> {
   //this saves suggested word parings
   final List<WordPair> _suggestions = <WordPair>[];
 
-  final TextStyle _biggerFont = const TextStyle(fontSize: 18);
+  final _saved = Set<WordPair>();
+
+  final TextStyle _biggerFont = const TextStyle(fontSize: 18.0);
 
   // This method is called once per word pair
   // It displays each new pair in a ListTile
   Widget _buildRow(WordPair pair) {
+    //this ensures that a word pairing has not already been added to favorites.
+    final alreadySaved = _saved.contains(pair);
+
     return ListTile(
       title: Text(
         pair.asPascalCase,
         style: _biggerFont,
+      ),
+      //this adds heart-shaped icon to the LisTile objects, that will enable favoriting
+      trailing: Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? Colors.red : null,
       ),
     );
   }
