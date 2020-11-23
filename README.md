@@ -13,3 +13,5 @@ Various Project include:
 [Xylophone](xylophone/ "play musical sounds")
 
 [Startup Name Generator (Startup maker)](startup_maker/ "find that startup name")
+
+[Dicee](dicee/ "a fun dice game")
