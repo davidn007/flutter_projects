@@ -1,4 +1,4 @@
-<!-- <img src="startupMaker.png" width="380">s -->
+<img src="startupMaker.png" width="380">
 
 # startup_maker
 
