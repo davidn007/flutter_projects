@@ -15,3 +15,5 @@ Various Project include:
 [Startup Name Generator (Startup maker)](startup_maker/ "find that startup name")
 
 [Dicee](dicee/ "a fun dice game")
+
+[Quizzler](quizzler/ "True of Flase Questions")
