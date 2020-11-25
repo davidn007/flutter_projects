@@ -5,6 +5,7 @@ class QuestionOption extends StatelessWidget {
     this.alphaOption,
     this.optionText,
   );
+
   final String alphaOption;
   final String optionText;
 
@@ -16,10 +17,14 @@ class QuestionOption extends StatelessWidget {
           alphaOption,
           style: TextStyle(fontSize: 20.0),
         ),
-        SizedBox(width: 10.0),
-        Text(
-          optionText,
-          style: TextStyle(fontSize: 20.0),
+        SizedBox(width: 5.0),
+        Expanded(
+          child: Container(
+            child: Text(
+              optionText,
+              style: TextStyle(fontSize: 20.0),
+            ),
+          ),
         ),
       ],
     );
