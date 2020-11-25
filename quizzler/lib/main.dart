@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'src/question_option.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,11 +25,11 @@ class Quizzler extends StatefulWidget {
 }
 
 class _QuizzlerState extends State<Quizzler> {
+  List<Icon> scoreKeeper = [];
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Expanded(
           flex: 5,
@@ -39,33 +40,105 @@ class _QuizzlerState extends State<Quizzler> {
             child: Center(
               child: Text(
                 'Question go here!',
-                style: TextStyle(
-                  color: Colors.white,
+                style: TextStyle(color: Colors.white, fontSize: 20.0),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: FlatButton(
+                    color: Colors.green,
+                    onPressed: () {
+                      setState(() {
+                        scoreKeeper.add(
+                          Icon(
+                            Icons.check,
+                            color: Colors.green,
+                          ),
+                        );
+                      });
+                    },
+                    child: QuestionOption('a.', 'First Option'),
+                  ),
                 ),
               ),
-            ),
-          ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.all(10.0),
-            child: FlatButton(
-              color: Colors.green,
-              onPressed: () {},
-              child: Text(
-                'True',
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: FlatButton(
+                    color: Colors.blue,
+                    onPressed: () {
+                      setState(() {
+                        scoreKeeper.add(
+                          Icon(
+                            Icons.check,
+                            color: Colors.green,
+                          ),
+                        );
+                      });
+                    },
+                    child: QuestionOption('b.', 'Second Option'),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ),
         Expanded(
-          child: Padding(
-            padding: EdgeInsets.all(10.0),
-            child: FlatButton(
-              onPressed: () {},
-              color: Colors.red,
-              child: Text('False'),
-            ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: FlatButton(
+                    color: Colors.red,
+                    onPressed: () {
+                      setState(() {
+                        scoreKeeper.add(
+                          Icon(
+                            Icons.check,
+                            color: Colors.green,
+                          ),
+                        );
+                      });
+                    },
+                    child: QuestionOption('c.', 'Third Option'),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: FlatButton(
+                    color: Colors.purple,
+                    onPressed: () {
+                      setState(() {
+                        scoreKeeper.add(
+                          Icon(
+                            Icons.check,
+                            color: Colors.green,
+                          ),
+                        );
+                      });
+                    },
+                    child: QuestionOption('d.', 'Fourth Option'),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          flex: 0,
+          child: Row(
+            children: scoreKeeper,
           ),
         ),
       ],
