@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'src/question_option.dart';
 import 'src/quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,28 +30,39 @@ class Quizzler extends StatefulWidget {
 
 class _QuizzlerState extends State<Quizzler> {
   List<Icon> scoreKeeper = [];
-  int questionIndex = 1;
 
-  void clickedOption(String optionNumber) {}
+  // This shows the  current question number
+  int questionIndex = 1;
 
   void checkAnswer(String userPickedAnswer) {
     String correctAnswer = quizBrain.getCorrectAnswer();
 
     setState(() {
-      if (correctAnswer == userPickedAnswer) {
-        scoreKeeper.add(Icon(
-          Icons.check,
-          color: Colors.green,
-        ));
-      } else {
-        scoreKeeper.add(Icon(
-          Icons.close,
-          color: Colors.red,
-        ));
-      }
+      if (quizBrain.isFinished() == true) {
+        Alert(
+                context: context,
+                title: "FINISHED!",
+                desc: "You've reached the end of the quiz.")
+            .show();
 
-      questionIndex++;
-      quizBrain.nextQuestion();
+        quizBrain.reset();
+        scoreKeeper.clear();
+        questionIndex = 1;
+      } else {
+        if (correctAnswer == userPickedAnswer) {
+          scoreKeeper.add(Icon(
+            Icons.check,
+            color: Colors.green,
+          ));
+        } else {
+          scoreKeeper.add(Icon(
+            Icons.close,
+            color: Colors.red,
+          ));
+        }
+        quizBrain.nextQuestion();
+        questionIndex++;
+      }
     });
   }
 
