@@ -31,9 +31,32 @@ class _QuizzlerState extends State<Quizzler> {
   List<Icon> scoreKeeper = [];
   int questionIndex = 1;
 
+  void clickedOption(String optionNumber) {}
+
+  void checkAnswer(String userPickedAnswer) {
+    String correctAnswer = quizBrain.getCorrectAnswer();
+
+    setState(() {
+      if (correctAnswer == userPickedAnswer) {
+        scoreKeeper.add(Icon(
+          Icons.check,
+          color: Colors.green,
+        ));
+      } else {
+        scoreKeeper.add(Icon(
+          Icons.close,
+          color: Colors.red,
+        ));
+      }
+
+      questionIndex++;
+      quizBrain.nextQuestion();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    String correctAnswer = quizBrain.getCorrectAnswer();
+    // String correctAnswer = quizBrain.getCorrectAnswer();
     return Column(
       children: <Widget>[
         Expanded(
@@ -73,22 +96,7 @@ class _QuizzlerState extends State<Quizzler> {
                   child: FlatButton(
                     color: Colors.green,
                     onPressed: () {
-                      setState(() {
-                        if (correctAnswer == quizBrain.getOptionA()) {
-                          scoreKeeper.add(Icon(
-                            Icons.check,
-                            color: Colors.green,
-                          ));
-                        } else {
-                          scoreKeeper.add(Icon(
-                            Icons.close,
-                            color: Colors.red,
-                          ));
-                        }
-
-                        questionIndex++;
-                        quizBrain.nextQuestion();
-                      });
+                      checkAnswer(quizBrain.getOptionA());
                     },
                     child: QuestionOption('a.', quizBrain.getOptionA()),
                   ),
@@ -100,24 +108,7 @@ class _QuizzlerState extends State<Quizzler> {
                   child: FlatButton(
                     color: Colors.blue,
                     onPressed: () {
-                      setState(() {
-                        setState(() {
-                          if (correctAnswer == quizBrain.getOptionB()) {
-                            scoreKeeper.add(Icon(
-                              Icons.check,
-                              color: Colors.green,
-                            ));
-                          } else {
-                            scoreKeeper.add(Icon(
-                              Icons.close,
-                              color: Colors.red,
-                            ));
-                          }
-
-                          questionIndex++;
-                          quizBrain.nextQuestion();
-                        });
-                      });
+                      checkAnswer(quizBrain.getOptionB());
                     },
                     child: QuestionOption('b.', quizBrain.getOptionB()),
                   ),
@@ -136,24 +127,7 @@ class _QuizzlerState extends State<Quizzler> {
                   child: FlatButton(
                     color: Colors.red,
                     onPressed: () {
-                      setState(() {
-                        setState(() {
-                          if (correctAnswer == quizBrain.getOptionC()) {
-                            scoreKeeper.add(Icon(
-                              Icons.check,
-                              color: Colors.green,
-                            ));
-                          } else {
-                            scoreKeeper.add(Icon(
-                              Icons.close,
-                              color: Colors.red,
-                            ));
-                          }
-
-                          questionIndex++;
-                          quizBrain.nextQuestion();
-                        });
-                      });
+                      checkAnswer(quizBrain.getOptionC());
                     },
                     child: QuestionOption('c.', quizBrain.getOptionC()),
                   ),
@@ -165,24 +139,7 @@ class _QuizzlerState extends State<Quizzler> {
                   child: FlatButton(
                     color: Colors.purple,
                     onPressed: () {
-                      setState(() {
-                        setState(() {
-                          if (correctAnswer == quizBrain.getOptionD()) {
-                            scoreKeeper.add(Icon(
-                              Icons.check,
-                              color: Colors.green,
-                            ));
-                          } else {
-                            scoreKeeper.add(Icon(
-                              Icons.close,
-                              color: Colors.red,
-                            ));
-                          }
-
-                          questionIndex++;
-                          quizBrain.nextQuestion();
-                        });
-                      });
+                      checkAnswer(quizBrain.getOptionD());
                     },
                     child: QuestionOption('d.', quizBrain.getOptionD()),
                   ),
