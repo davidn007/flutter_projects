@@ -1,4 +1,4 @@
-<img src="startupMaker.png" width="380">
+<img src="images_of_projects\startupMaker.png" width="380">
 
 # startup_maker
 
