@@ -11,6 +11,7 @@ class MiCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.blueGrey[900],
         body: SafeArea(
@@ -18,9 +19,8 @@ class MiCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               CircleAvatar(
-                radius: 50.0,
-                backgroundColor: Color(0xFFFFFFFF),
-              ),
+                  radius: 50.0,
+                  backgroundImage: AssetImage('images/davidn.JPG')),
               Text(
                 'David Nwaneri',
                 style: TextStyle(
