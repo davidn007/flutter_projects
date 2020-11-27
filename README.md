@@ -17,3 +17,5 @@ Various Project include:
 [Dicee](dicee/ "a fun dice game")
 
 [Quizzler](quizzler/ "True of Flase Questions")
+
+[BMI Calulator](bmi_calculator/ "Calculate your Body Mass Index")
