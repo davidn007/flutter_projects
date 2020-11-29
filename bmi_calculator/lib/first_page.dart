@@ -16,6 +16,9 @@ class FirstPage extends StatefulWidget {
   _FirstPageState createState() => _FirstPageState();
 }
 
+// this will help specify what gender was selected.
+enum Gender { male, female }
+
 class _FirstPageState extends State<FirstPage> {
   Color maleCardColour = inactiveCardColour;
   Color femaleCardColour = inactiveCardColour;
@@ -23,9 +26,9 @@ class _FirstPageState extends State<FirstPage> {
   Color maleTextColour = inactiveGenderTextColour;
   Color femaleTextColour = inactiveGenderTextColour;
 
-  void updateColour(int gender) {
+  void updateColour(Gender selectedGender) {
     // 1 == male
-    if (gender == 1) {
+    if (selectedGender == Gender.male) {
       if (maleCardColour == inactiveCardColour) {
         maleTextColour = activeGenderTextColour;
         maleCardColour = activeCardColour;
@@ -37,7 +40,7 @@ class _FirstPageState extends State<FirstPage> {
         maleCardColour = inactiveCardColour;
       }
     }
-    if (gender == 2) {
+    if (selectedGender == Gender.female) {
       if (femaleCardColour == inactiveCardColour) {
         femaleTextColour = activeGenderTextColour;
         femaleCardColour = activeCardColour;
@@ -68,7 +71,7 @@ class _FirstPageState extends State<FirstPage> {
                     child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      updateColour(1);
+                      updateColour(Gender.male);
                     });
                   },
                   child: ReusableCard(
@@ -84,7 +87,7 @@ class _FirstPageState extends State<FirstPage> {
                     child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      updateColour(2);
+                      updateColour(Gender.female);
                     });
                   },
                   child: ReusableCard(
