@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
-import 'reuseable_card.dart';
+import 'reusable_card.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'icon_card.dart';
+
+const Color activeCardColour = Color(0xFF1d1f33);
+const Color inactiveCardColour = Color(0xFF111428);
+const Color bottomContainerColour = Color(0xFFeb1555);
+const double bottomContainerHeight = 70.0;
+
+const Color activeGenderTextColour = Color(0xFFFFFFFF);
+const Color inactiveGenderTextColour = Color(0xFF83858f);
 
 class FirstPage extends StatefulWidget {
   @override
@@ -7,6 +17,40 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
+  Color maleCardColour = inactiveCardColour;
+  Color femaleCardColour = inactiveCardColour;
+
+  Color maleTextColour = inactiveGenderTextColour;
+  Color femaleTextColour = inactiveGenderTextColour;
+
+  void updateColour(int gender) {
+    // 1 == male
+    if (gender == 1) {
+      if (maleCardColour == inactiveCardColour) {
+        maleTextColour = activeGenderTextColour;
+        maleCardColour = activeCardColour;
+
+        femaleTextColour = inactiveGenderTextColour;
+        femaleCardColour = inactiveCardColour;
+      } else {
+        maleTextColour = inactiveGenderTextColour;
+        maleCardColour = inactiveCardColour;
+      }
+    }
+    if (gender == 2) {
+      if (femaleCardColour == inactiveCardColour) {
+        femaleTextColour = activeGenderTextColour;
+        femaleCardColour = activeCardColour;
+
+        maleTextColour = inactiveGenderTextColour;
+        maleCardColour = inactiveCardColour;
+      } else {
+        femaleTextColour = inactiveGenderTextColour;
+        femaleCardColour = inactiveCardColour;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,25 +64,64 @@ class _FirstPageState extends State<FirstPage> {
           Expanded(
             child: Row(
               children: [
-                Expanded(child: ReuseableCard()),
-                Expanded(child: ReuseableCard()),
+                Expanded(
+                    child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      updateColour(1);
+                    });
+                  },
+                  child: ReusableCard(
+                    cardColour: maleCardColour,
+                    cardChild: IconCard(
+                      genderIcon: FontAwesomeIcons.mars,
+                      genderText: 'MALE',
+                      textColor: maleTextColour,
+                    ),
+                  ),
+                )),
+                Expanded(
+                    child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      updateColour(2);
+                    });
+                  },
+                  child: ReusableCard(
+                    cardColour: femaleCardColour,
+                    cardChild: IconCard(
+                      genderIcon: FontAwesomeIcons.venus,
+                      genderText: "FEMALE",
+                      textColor: femaleTextColour,
+                    ),
+                  ),
+                )),
               ],
             ),
           ),
-          Expanded(child: ReuseableCard()),
+          Expanded(
+              child: ReusableCard(
+            cardColour: activeCardColour,
+          )),
           Expanded(
             child: Row(
               children: [
-                Expanded(child: ReuseableCard()),
-                Expanded(child: ReuseableCard()),
+                Expanded(
+                    child: ReusableCard(
+                  cardColour: activeCardColour,
+                )),
+                Expanded(
+                    child: ReusableCard(
+                  cardColour: activeCardColour,
+                )),
               ],
             ),
           ),
           Container(
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
-            height: 70,
-            color: Color(0xFFeb1555),
+            height: bottomContainerHeight,
+            color: bottomContainerColour,
             child: Center(
               child: Text(
                 'CALCULATE YOUR BMI',
