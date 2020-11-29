@@ -4,8 +4,9 @@ class IconCard extends StatelessWidget {
   final IconData genderIcon;
   final String genderText;
   final Color textColor;
+  final Color iconColor;
 
-  IconCard({this.genderIcon, this.genderText, this.textColor});
+  IconCard({this.genderIcon, this.genderText, this.textColor, this.iconColor});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class IconCard extends StatelessWidget {
         Icon(
           genderIcon,
           size: 80.0,
+          color: iconColor,
         ),
         SizedBox(
           height: 15.0,
