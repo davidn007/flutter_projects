@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,6 +18,8 @@ enum Gender { male, female }
 class _FirstPageState extends State<FirstPage> {
   Gender selectedCard;
   double bodyHeight = 120.0;
+  int bodyWeight = 60;
+  int age = 16;
 
   Color selectGender(Gender selectedGender) {
     return selectedCard == selectedGender
@@ -134,10 +138,84 @@ class _FirstPageState extends State<FirstPage> {
                 Expanded(
                     child: ReusableCard(
                   cardColour: kActiveCardColour,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'WEIGHT',
+                        style: kCardTextStyle,
+                      ),
+                      Text(
+                        '$bodyWeight',
+                        style: kNumberStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.minus,
+                            weightChange: () {
+                              setState(() {
+                                bodyWeight--;
+                              });
+                            },
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.plus,
+                            weightChange: () {
+                              setState(() {
+                                bodyWeight++;
+                              });
+                            },
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 )),
                 Expanded(
                     child: ReusableCard(
                   cardColour: kActiveCardColour,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'AGE',
+                        style: kCardTextStyle,
+                      ),
+                      Text(
+                        '$age',
+                        style: kNumberStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.minus,
+                            weightChange: () {
+                              setState(() {
+                                age--;
+                              });
+                            },
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.plus,
+                            weightChange: () {
+                              setState(() {
+                                age++;
+                              });
+                            },
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 )),
               ],
             ),
@@ -159,6 +237,29 @@ class _FirstPageState extends State<FirstPage> {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  final IconData icon;
+  final Function weightChange;
+
+  RoundIconButton({@required this.icon, @required this.weightChange});
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: weightChange,
+      fillColor: Color(0xFF4c4f5e),
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      elevation: 6.0,
+      shape: CircleBorder(),
+      child: Icon(
+        icon,
       ),
     );
   }
