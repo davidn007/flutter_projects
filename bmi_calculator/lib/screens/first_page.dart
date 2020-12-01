@@ -1,11 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'reusable_card.dart';
+import '../components/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'icon_card.dart';
-import 'constants.dart';
+import '../components/icon_card.dart';
+import '../constants.dart';
+import 'result_page.dart';
+import 'package:bmi_calculator/components/bottom_button.dart';
+import 'package:bmi_calculator/components/round_icon-button.dart';
+import 'package:bmi_calculator/calculator_brain.dart';
 
 class FirstPage extends StatefulWidget {
   @override
@@ -220,46 +223,22 @@ class _FirstPageState extends State<FirstPage> {
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: kBottomContainerHeight,
-            color: kBottomContainerColour,
-            child: Center(
-              child: Text(
-                'CALCULATE YOUR BMI',
-                style: TextStyle(
-                  letterSpacing: 1.0,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          )
+          BottomButton(
+            buttonText: 'CALCULATE YOUR BMI',
+            navigate: () {
+              CalculatorBrain calc =
+                  CalculatorBrain(height: bodyHeight, weight: bodyWeight);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ResultPage(
+                            bmiResult: calc.calculateBMI(),
+                            resultText: calc.getResult(),
+                            interpretation: calc.getInterpretation(),
+                          )));
+            },
+          ),
         ],
-      ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  final IconData icon;
-  final Function weightChange;
-
-  RoundIconButton({@required this.icon, @required this.weightChange});
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: weightChange,
-      fillColor: Color(0xFF4c4f5e),
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      elevation: 6.0,
-      shape: CircleBorder(),
-      child: Icon(
-        icon,
       ),
     );
   }
