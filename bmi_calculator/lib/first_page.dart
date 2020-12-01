@@ -15,7 +15,7 @@ enum Gender { male, female }
 
 class _FirstPageState extends State<FirstPage> {
   Gender selectedCard;
-  int bodyHeight = 120;
+  double bodyHeight = 120.0;
 
   Color selectGender(Gender selectedGender) {
     return selectedCard == selectedGender
@@ -96,7 +96,7 @@ class _FirstPageState extends State<FirstPage> {
                   textBaseline: TextBaseline.alphabetic,
                   children: <Widget>[
                     Text(
-                      '$bodyHeight',
+                      bodyHeight.toStringAsFixed(1),
                       style: kNumberStyle,
                     ),
                     Text(
@@ -115,12 +115,12 @@ class _FirstPageState extends State<FirstPage> {
                     overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
                   ),
                   child: Slider(
-                    value: bodyHeight.toDouble(),
+                    value: bodyHeight,
                     min: 100.0,
                     max: 270.0,
                     onChanged: (double newValue) {
                       setState(() {
-                        bodyHeight = newValue.round();
+                        bodyHeight = newValue;
                       });
                     },
                   ),
