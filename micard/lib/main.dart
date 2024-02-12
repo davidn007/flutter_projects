@@ -30,7 +30,7 @@ class MiCard extends StatelessWidget {
                 ),
               ),
               Text(
-                'FLUTTER DEVELOPER',
+                'SOFTWARE DEVELOPER',
                 style: TextStyle(
                   fontSize: 20.0,
                   fontFamily: 'Source Sans Pro',
